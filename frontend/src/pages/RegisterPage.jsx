@@ -11,7 +11,11 @@ const schema = z.object({
   fullName: z.string().min(2),
   email: z.string().email(),
   phoneNumber: z.string().optional(),
-  password: z.string().min(6)
+  password: z.string().min(6),
+  confirmPassword: z.string().min(6)
+}).refine((data) => data.password === data.confirmPassword, {
+  message: 'Passwords do not match',
+  path: ['confirmPassword']
 });
 
 export default function RegisterPage() {
@@ -21,7 +25,13 @@ export default function RegisterPage() {
 
   const onSubmit = async (values) => {
     try {
-      await registerUser(values);
+      const payload = {
+        fullName: values.fullName,
+        email: values.email,
+        phoneNumber: values.phoneNumber,
+        password: values.password
+      };
+      await registerUser(payload);
       navigate('/dashboard');
     } catch (err) {
       alert(err?.response?.data?.message || 'Registration failed');
@@ -64,6 +74,10 @@ export default function RegisterPage() {
             <Label>Password</Label>
             <Input type="password" {...register('password')} placeholder="Create a strong password" autoComplete="new-password" />
           </div>
+        </div>
+        <div>
+          <Label>Confirm password</Label>
+          <Input type="password" {...register('confirmPassword')} placeholder="Re-enter your password" autoComplete="new-password" />
         </div>
         <Button type="submit" className="w-full" disabled={formState.isSubmitting}>
           {formState.isSubmitting ? 'Creating account...' : 'Create account'}

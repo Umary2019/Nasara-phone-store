@@ -8,11 +8,31 @@ import { errorHandler, notFound } from './middleware/errorHandler.js';
 import { apiRouter } from './routes/index.js';
 import { uploadDirMiddleware } from './middleware/upload.js';
 
+function getAllowedOrigins() {
+  const configuredOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
+  return [...new Set([...configuredOrigins, 'http://localhost:5173', 'http://127.0.0.1:5173'])];
+}
+
 export function createApp() {
   const app = express();
+  const allowedOrigins = getAllowedOrigins();
 
   app.use(helmet());
-  app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+  app.use(cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+        return;
+      }
+
+      callback(null, false);
+    },
+    credentials: true
+  }));
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());

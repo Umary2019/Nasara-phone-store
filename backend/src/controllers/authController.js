@@ -46,10 +46,18 @@ async function issueTokens(user) {
 export const register = asyncHandler(async (req, res) => {
   await ensureDefaultRoles();
 
-  const { fullName, email, phoneNumber, password } = req.body;
+  const { fullName, email, phoneNumber, password, confirmPassword } = req.body;
   const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
-  if (!fullName || !normalizedEmail || !password) {
-    return res.status(400).json({ message: 'Full name, email, and password are required' });
+  if (!fullName || !normalizedEmail || !password || !confirmPassword) {
+    return res.status(400).json({ message: 'Full name, email, password, and confirmation are required' });
+  }
+
+  if (typeof password !== 'string' || password.length < 6) {
+    return res.status(400).json({ message: 'Password must be at least 6 characters long' });
+  }
+
+  if (password !== confirmPassword) {
+    return res.status(400).json({ message: 'Passwords do not match' });
   }
 
   const normalizedRole = 'cashier';
