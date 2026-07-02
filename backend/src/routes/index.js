@@ -1,0 +1,30 @@
+import { Router } from 'express';
+import { authRouter } from './authRoutes.js';
+import { dashboardRouter } from './dashboardRoutes.js';
+import { usersRouter } from './usersRoutes.js';
+import { categoriesRouter } from './categoriesRoutes.js';
+import { productsRouter } from './productsRoutes.js';
+import { customersRouter } from './customersRoutes.js';
+import { suppliersRouter } from './suppliersRoutes.js';
+import { salesRouter } from './salesRoutes.js';
+import { purchasesRouter } from './purchasesRoutes.js';
+import { expensesRouter } from './expensesRoutes.js';
+import { reportsRouter } from './reportsRoutes.js';
+import { settingsRouter } from './settingsRoutes.js';
+import { auditRouter } from './auditRoutes.js';
+
+export const apiRouter = Router();
+
+apiRouter.use('/auth', authRouter);
+apiRouter.use('/dashboard', dashboardRouter);
+apiRouter.use('/users', usersRouter);
+apiRouter.use('/categories', categoriesRouter);
+apiRouter.use('/products', productsRouter);
+apiRouter.use('/customers', customersRouter);
+apiRouter.use('/suppliers', suppliersRouter);
+apiRouter.use('/sales', salesRouter);
+apiRouter.use('/purchases', purchasesRouter);
+apiRouter.use('/expenses', expensesRouter);
+apiRouter.use('/reports', reportsRouter);
+apiRouter.use('/settings', settingsRouter);
+apiRouter.use('/audit', auditRouter);
