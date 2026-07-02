@@ -65,9 +65,6 @@ export default function RegisterPage() {
             <Input type="password" {...register('password')} placeholder="Create a strong password" autoComplete="new-password" />
           </div>
         </div>
-        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
-          The first registered user will automatically become <strong>Admin</strong>. All later registrations are created as <strong>Cashier</strong>, and admins can promote users later.
-        </div>
         <Button type="submit" className="w-full" disabled={formState.isSubmitting}>
           {formState.isSubmitting ? 'Creating account...' : 'Create account'}
         </Button>
