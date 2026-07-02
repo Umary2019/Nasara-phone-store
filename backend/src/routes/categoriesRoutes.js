@@ -10,6 +10,6 @@ export const categoriesRouter = Router();
 
 categoriesRouter.get('/', protect, crud.list);
 categoriesRouter.get('/:id', protect, crud.getById);
-categoriesRouter.post('/', protect, permitRoles('admin', 'manager'), crud.create);
-categoriesRouter.put('/:id', protect, permitRoles('admin', 'manager'), crud.update);
+categoriesRouter.post('/', protect, permitRoles('admin'), crud.create);
+categoriesRouter.put('/:id', protect, permitRoles('admin'), crud.update);
 categoriesRouter.delete('/:id', protect, permitRoles('admin'), crud.remove);

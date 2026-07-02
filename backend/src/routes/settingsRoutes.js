@@ -8,7 +8,7 @@ const crud = createCrudController(Setting);
 
 export const settingsRouter = Router();
 
-settingsRouter.get('/', protect, permitRoles('admin', 'manager'), crud.list);
-settingsRouter.get('/:id', protect, permitRoles('admin', 'manager'), crud.getById);
+settingsRouter.get('/', protect, permitRoles('admin'), crud.list);
+settingsRouter.get('/:id', protect, permitRoles('admin'), crud.getById);
 settingsRouter.post('/', protect, permitRoles('admin'), crud.create);
 settingsRouter.put('/:id', protect, permitRoles('admin'), crud.update);

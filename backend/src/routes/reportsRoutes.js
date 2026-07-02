@@ -5,6 +5,6 @@ import { exportSalesReport, exportInventoryReport, exportExpenseReport } from '.
 
 export const reportsRouter = Router();
 
-reportsRouter.get('/sales', protect, permitRoles('admin', 'manager'), exportSalesReport);
-reportsRouter.get('/inventory', protect, permitRoles('admin', 'manager'), exportInventoryReport);
-reportsRouter.get('/expenses', protect, permitRoles('admin', 'manager'), exportExpenseReport);
+reportsRouter.get('/sales', protect, permitRoles('admin'), exportSalesReport);
+reportsRouter.get('/inventory', protect, permitRoles('admin'), exportInventoryReport);
+reportsRouter.get('/expenses', protect, permitRoles('admin'), exportExpenseReport);

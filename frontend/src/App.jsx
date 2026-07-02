@@ -72,8 +72,8 @@ export default function App() {
       <Route path="/expenses" element={<ProtectedRoute><AppShell><ExpensesPage /></AppShell></ProtectedRoute>} />
       <Route path="/reports" element={<ProtectedRoute><AppShell><ReportsPage /></AppShell></ProtectedRoute>} />
       <Route path="/users" element={<ProtectedRoute roles={['admin']}><AppShell><UsersPage /></AppShell></ProtectedRoute>} />
-      <Route path="/settings" element={<ProtectedRoute><AppShell><SettingsPage /></AppShell></ProtectedRoute>} />
-      <Route path="/audit-log" element={<ProtectedRoute roles={['admin', 'manager']}><AppShell><AuditLogPage /></AppShell></ProtectedRoute>} />
+      <Route path="/settings" element={<ProtectedRoute roles={['admin']}><AppShell><SettingsPage /></AppShell></ProtectedRoute>} />
+      <Route path="/audit-log" element={<ProtectedRoute roles={['admin']}><AppShell><AuditLogPage /></AppShell></ProtectedRoute>} />
       <Route path="/receipt/:id" element={<ProtectedRoute><AppShell><ReceiptPreviewPage /></AppShell></ProtectedRoute>} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

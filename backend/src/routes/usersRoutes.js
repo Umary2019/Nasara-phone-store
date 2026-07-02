@@ -11,8 +11,8 @@ import {
 	deleteUser
 } from '../controllers/usersController.js';
 
-usersRouter.get('/', protect, permitRoles('admin', 'manager'), listUsers);
-usersRouter.get('/:id', protect, permitRoles('admin', 'manager'), getUser);
+usersRouter.get('/', protect, permitRoles('admin'), listUsers);
+usersRouter.get('/:id', protect, permitRoles('admin'), getUser);
 usersRouter.post('/', protect, permitRoles('admin'), createUser);
 usersRouter.put('/:id', protect, permitRoles('admin'), updateUser);
 usersRouter.delete('/:id', protect, permitRoles('admin'), deleteUser);

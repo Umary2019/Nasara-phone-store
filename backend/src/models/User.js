@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
     phoneNumber: { type: String, default: '' },
     passwordHash: { type: String, required: true },
     role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role', required: true },
-    roleName: { type: String, required: true, enum: ['admin', 'manager', 'cashier'] },
+    roleName: { type: String, required: true, enum: ['admin', 'cashier'] },
     isActive: { type: Boolean, default: true },
     lastLoginAt: { type: Date },
     avatarUrl: { type: String, default: '' }

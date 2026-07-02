@@ -34,7 +34,7 @@ export default function LoginPage() {
       description="A clean access point for sales, inventory, reporting, and staff administration."
       highlights={[
         { title: 'Sales ready', description: 'Move from login to checkout in a few seconds.', icon: <Store className="h-4 w-4 text-emerald-300" /> },
-        { title: 'Team access', description: 'Admin, manager, and cashier roles stay separated.', icon: <Users2 className="h-4 w-4 text-emerald-300" /> },
+        { title: 'Team access', description: 'Admin and cashier roles stay separated.', icon: <Users2 className="h-4 w-4 text-emerald-300" /> },
         { title: 'Protected sessions', description: 'Refresh tokens keep your session secure and smooth.', icon: <ShieldCheck className="h-4 w-4 text-emerald-300" /> }
       ]}
       footer={

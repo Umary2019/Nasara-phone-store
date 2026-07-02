@@ -11,11 +11,11 @@ export const productsRouter = Router();
 
 productsRouter.get('/', protect, crud.list);
 productsRouter.get('/:id', protect, crud.getById);
-productsRouter.post('/', protect, permitRoles('admin', 'manager'), upload.single('image'), (req, _res, next) => {
+productsRouter.post('/', protect, permitRoles('admin'), upload.single('image'), (req, _res, next) => {
   if (req.file) req.body.imageUrl = `/uploads/${req.file.filename}`;
   next();
 }, crud.create);
-productsRouter.put('/:id', protect, permitRoles('admin', 'manager'), upload.single('image'), (req, _res, next) => {
+productsRouter.put('/:id', protect, permitRoles('admin'), upload.single('image'), (req, _res, next) => {
   if (req.file) req.body.imageUrl = `/uploads/${req.file.filename}`;
   next();
 }, crud.update);

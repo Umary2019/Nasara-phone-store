@@ -8,5 +8,5 @@ const crud = createCrudController(AuditLog, { searchFields: ['action', 'entityTy
 
 export const auditRouter = Router();
 
-auditRouter.get('/', protect, permitRoles('admin', 'manager'), crud.list);
-auditRouter.get('/:id', protect, permitRoles('admin', 'manager'), crud.getById);
+auditRouter.get('/', protect, permitRoles('admin'), crud.list);
+auditRouter.get('/:id', protect, permitRoles('admin'), crud.getById);

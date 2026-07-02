@@ -19,10 +19,10 @@ const sections = [
     { to: '/suppliers', label: 'Suppliers', icon: Store }
   ]},
   { label: 'Insights', items: [
-    { to: '/reports', label: 'Reports', icon: ChartColumn, roles: ['admin', 'manager'] },
-    { to: '/audit-log', label: 'Audit Log', icon: ShieldCheck, roles: ['admin', 'manager'] },
+    { to: '/reports', label: 'Reports', icon: ChartColumn, roles: ['admin'] },
+    { to: '/audit-log', label: 'Audit Log', icon: ShieldCheck, roles: ['admin'] },
     { to: '/users', label: 'Users', icon: Users, roles: ['admin'] },
-    { to: '/settings', label: 'Settings', icon: Settings2, roles: ['admin', 'manager'] },
+    { to: '/settings', label: 'Settings', icon: Settings2, roles: ['admin'] },
     { to: '/receipt/demo', label: 'Receipt Preview', icon: BellRing }
   ]}
 ];

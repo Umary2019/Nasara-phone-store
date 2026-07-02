@@ -6,4 +6,4 @@ import { createPurchase, listPurchases } from '../controllers/purchaseController
 export const purchasesRouter = Router();
 
 purchasesRouter.get('/', protect, listPurchases);
-purchasesRouter.post('/', protect, permitRoles('admin', 'manager'), createPurchase);
+purchasesRouter.post('/', protect, permitRoles('admin'), createPurchase);

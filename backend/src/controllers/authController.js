@@ -19,7 +19,7 @@ function hashToken(token) {
 }
 
 async function ensureDefaultRoles() {
-  const roleNames = ['admin', 'manager', 'cashier'];
+  const roleNames = ['admin', 'cashier'];
   for (const name of roleNames) {
     await Role.findOneAndUpdate(
       { name },
@@ -46,27 +46,14 @@ async function issueTokens(user) {
 export const register = asyncHandler(async (req, res) => {
   await ensureDefaultRoles();
 
-  const { fullName, email, phoneNumber, password, roleName } = req.body;
+  const { fullName, email, phoneNumber, password } = req.body;
   const normalizedEmail = typeof email === 'string' ? email.trim().toLowerCase() : '';
   if (!fullName || !normalizedEmail || !password) {
     return res.status(400).json({ message: 'Full name, email, and password are required' });
   }
 
   const usersCount = await User.countDocuments();
-  const requestedRole = typeof roleName === 'string' ? roleName.toLowerCase() : '';
-  const normalizedRole = requestedRole;
-
-  if (!normalizedRole) {
-    return res.status(400).json({ message: 'Please select a role' });
-  }
-
-  if (usersCount === 0) {
-    if (!['admin', 'manager', 'cashier'].includes(normalizedRole)) {
-      return res.status(400).json({ message: 'Invalid role selected' });
-    }
-  } else if (!['manager', 'cashier'].includes(normalizedRole)) {
-    return res.status(400).json({ message: 'Only the first account can claim Admin' });
-  }
+  const normalizedRole = usersCount === 0 ? 'admin' : 'cashier';
 
   const role = await Role.findOne({ name: normalizedRole });
 

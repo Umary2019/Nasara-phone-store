@@ -4,21 +4,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
-import { Button, Input, Label, Select } from '../components/ui.jsx';
+import { Button, Input, Label } from '../components/ui.jsx';
 import { AuthLayout } from '../components/layout/AuthLayout.jsx';
 
 const schema = z.object({
   fullName: z.string().min(2),
   email: z.string().email(),
   phoneNumber: z.string().optional(),
-  password: z.string().min(6),
-  roleName: z.enum(['admin', 'manager', 'cashier'])
+  password: z.string().min(6)
 });
 
 export default function RegisterPage() {
   const { register: registerUser } = useAuth();
   const navigate = useNavigate();
-  const { register, handleSubmit, formState } = useForm({ resolver: zodResolver(schema), defaultValues: { roleName: '' } });
+  const { register, handleSubmit, formState } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit = async (values) => {
     try {
@@ -66,16 +65,8 @@ export default function RegisterPage() {
             <Input type="password" {...register('password')} placeholder="Create a strong password" autoComplete="new-password" />
           </div>
         </div>
-        <div>
-          <Label>Role</Label>
-          <Select {...register('roleName')}>
-            <option value="" disabled>
-              Select a role
-            </option>
-            <option value="admin">Admin</option>
-            <option value="manager">Manager</option>
-            <option value="cashier">Cashier</option>
-          </Select>
+        <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
+          The first registered user will automatically become <strong>Admin</strong>. All later registrations are created as <strong>Cashier</strong>, and admins can promote users later.
         </div>
         <Button type="submit" className="w-full" disabled={formState.isSubmitting}>
           {formState.isSubmitting ? 'Creating account...' : 'Create account'}

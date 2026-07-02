@@ -11,7 +11,7 @@ async function run() {
   await mongoose.connect(uri);
   console.log('Connected to', uri);
 
-  const roles = ['admin', 'manager', 'cashier'];
+  const roles = ['admin', 'cashier'];
   for (const name of roles) {
     await Role.findOneAndUpdate({ name }, { name, permissions: [] }, { upsert: true, new: true });
     console.log('Ensured role:', name);
