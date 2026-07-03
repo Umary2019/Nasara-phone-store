@@ -30,6 +30,7 @@ export default function RegisterPage() {
         email: values.email,
         phoneNumber: values.phoneNumber,
         password: values.password
+        ,confirmPassword: values.confirmPassword
       };
       await registerUser(payload);
       navigate('/dashboard');
